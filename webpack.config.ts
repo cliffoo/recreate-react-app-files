@@ -1,12 +1,13 @@
 import type { Configuration } from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import EslintWebpackPlugin from "eslint-webpack-plugin";
+
+const extensions = [".ts", ".tsx", ".js", ".jsx"];
 
 const config: Configuration = {
   mode: process.env.NODE_ENV === "production" ? "production" : "development",
   entry: "./src/index.tsx",
-  resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx"]
-  },
+  resolve: { extensions },
   module: {
     rules: [
       {
@@ -17,9 +18,8 @@ const config: Configuration = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: "./src/index.html"
-    })
+    new EslintWebpackPlugin({ extensions }),
+    new HtmlWebpackPlugin({ template: "./src/index.html" })
   ]
 };
 
