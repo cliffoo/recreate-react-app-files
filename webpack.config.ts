@@ -10,15 +10,17 @@ const config: Configuration = {
   module: {
     rules: [
       {
-        test: [/\.jsx?$/, /\.tsx?$/],
-        use: ["babel-loader"],
+        test: /\.tsx?$/,
+        use: ["ts-loader"],
         exclude: /node_modules/
       }
     ]
   },
-  plugins: [new HtmlWebpackPlugin({
-    template: "./src/index.html"
-  })]
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./src/index.html"
+    })
+  ]
 };
 
 export default config;
